@@ -5,6 +5,18 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
+  <!-- 上下文参数 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <!-- spring 配置文件 -->
+    <param-value>classpath:spring.xml</param-value>
+  </context-param>
+
+  <!-- 封装了一个监听器,帮助加载 Spring 的配置文件 -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
   <servlet>
     <servlet-name>demo</servlet-name>
     <servlet-class>com.ssm.servlet.DemoServlet</servlet-class>
