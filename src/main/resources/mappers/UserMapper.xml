@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namesapce:理解成实现类的全路径(包名+类名) -->
+<mapper namespace="com.ssm.mapper.UserMapper" >
+
+    <select id="listUser" resultType="com.ssm.pojo.User">
+        select id, account from user
+    </select>
+
+</mapper>

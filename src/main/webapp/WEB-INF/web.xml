@@ -12,18 +12,64 @@
     <param-value>classpath:spring.xml</param-value>
   </context-param>
 
+  <!-- druid -->
+  <filter>
+    <filter-name>druidWebStatFilter</filter-name>
+    <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+    <init-param>
+      <param-name>exclusions</param-name>
+      <param-value>/css/*,/context/*,/plug-in/*,/plug-in-ui/*,*.js,*.css,*.gif ,*.jpg,*.png,*. ico,*/druid*,/attached/*,/upload/*,/webpage/*,/swagger/*,*.jsp</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>druidWebStatFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
   <!-- 封装了一个监听器,帮助加载 Spring 的配置文件 -->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
 
+
+
   <servlet>
     <servlet-name>demo</servlet-name>
     <servlet-class>com.ssm.servlet.DemoServlet</servlet-class>
+  </servlet>
+
+  <!-- 配置 Druid 监控信息显示页面 -->
+  <servlet>
+    <servlet-name>druidStatView</servlet-name>
+    <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+    <!-- 允许清空统计数据
+    <init-param>
+        <param-name>resetEnable</param-name>
+        <param-value>true</param-value>
+    </init-param>
+     -->
+    <!-- 用户名 -->
+    <init-param>
+      <param-name>loginUsername</param-name>
+      <param-value>druid</param-value>
+    </init-param>
+    <!-- 密码 -->
+    <init-param>
+      <param-name>loginPassword</param-name>
+      <param-value>druid</param-value>
+    </init-param>
   </servlet>
   
   <servlet-mapping>
     <servlet-name>demo</servlet-name>
     <url-pattern>/demo</url-pattern>
   </servlet-mapping>
+
+
+
+  <servlet-mapping>
+    <servlet-name>druidStatView</servlet-name>
+    <url-pattern>/webpage/system/druid/*</url-pattern>
+  </servlet-mapping>
+
 </web-app>
