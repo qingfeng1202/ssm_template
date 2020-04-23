@@ -32,44 +32,21 @@
   </listener>
 
 
-
   <servlet>
-    <servlet-name>demo</servlet-name>
-    <servlet-class>com.ssm.servlet.DemoServlet</servlet-class>
+    <servlet-name>jqk</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!--如果不配置，<init-param>默认会在/WEB-INF/<servlet-name>-servlet.xml-->
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring-mvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
   </servlet>
 
-  <!-- 配置 Druid 监控信息显示页面 -->
-  <servlet>
-    <servlet-name>druidStatView</servlet-name>
-    <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
-    <!-- 允许清空统计数据
-    <init-param>
-        <param-name>resetEnable</param-name>
-        <param-value>true</param-value>
-    </init-param>
-     -->
-    <!-- 用户名 -->
-    <init-param>
-      <param-name>loginUsername</param-name>
-      <param-value>druid</param-value>
-    </init-param>
-    <!-- 密码 -->
-    <init-param>
-      <param-name>loginPassword</param-name>
-      <param-value>druid</param-value>
-    </init-param>
-  </servlet>
-  
   <servlet-mapping>
-    <servlet-name>demo</servlet-name>
-    <url-pattern>/demo</url-pattern>
+    <servlet-name>jqk</servlet-name>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
 
-
-
-  <servlet-mapping>
-    <servlet-name>druidStatView</servlet-name>
-    <url-pattern>/webpage/system/druid/*</url-pattern>
-  </servlet-mapping>
 
 </web-app>
